@@ -105,8 +105,8 @@ describe('When I visit the data set page', function () {
     $('#save-mapping').click();
     browser.sleep(500);
     $('#confirm-mapping').click();
-    browser.wait(EC.presenceOf($('.alert.alert-info.alert-dismissable')), 120000);
-    expect($('.alert.alert-info.alert-dismissable').isPresent()).toBe(true);
+    browser.wait(EC.presenceOf($('.alert.alert-success')), 120000);
+    expect($('.alert.alert-success').isPresent()).toBe(true);
     $$('[ng-click="goto_step(2)"]').first().click();
   });
 
@@ -182,8 +182,8 @@ describe('When I visit the data set page', function () {
     $('#save-mapping').click();
     browser.sleep(500);
     $('#confirm-mapping').click();
-    browser.wait(EC.presenceOf($('.alert.alert-success.alert-dismissable')), 120000);
-    expect($('.alert.alert-success.alert-dismissable').isPresent()).toBe(true);
+    browser.wait(EC.presenceOf($('.alert.alert-success')), 120000);
+    expect($('.alert.alert-success').isPresent()).toBe(true);
     $('[ng-click="view_my_properties()"]').click();
     expect(browser.getCurrentUrl()).toContain('/app/#/properties');
   });
