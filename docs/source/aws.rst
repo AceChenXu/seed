@@ -14,15 +14,21 @@ understanding of this project's layout.
 Prerequisites
 ^^^^^^^^^^^^^
 
-Ubuntu server 14.04 or newer.
+Tested with Ubuntu server 14.04 LTS
 
 .. code-block:: console
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install -y libpq-dev python-dev python-pip libatlas-base-dev \
-    gfortran build-essential g++ npm libxml2-dev libxslt1-dev git mercurial \
-    libssl-dev curl uwsgi-core uwsgi-plugin-python
+    sudo apt-get install -y --no-install-recommends \
+        git \
+        curl \
+        python-pip
+
+    sudo apt-get install -y --no-install-recommends \
+        libpq-dev python-dev python-pip libatlas-base-dev \
+        gfortran build-essential g++ npm libxml2-dev libxslt1-dev git mercurial \
+        libssl-dev curl uwsgi-core uwsgi-plugin-python
 
 
 PostgreSQL and Redis are not included in the above commands. For a quick installation on AWS it
@@ -41,7 +47,7 @@ scalable solution, it is recommended to use AWS's hosted Redis (ElastiCache) and
 Amazon Web Services (AWS) Dependencies
 ++++++++++++++++++++++++++++++++++++++
 
-The following AWS services are used for **SEED**:
+The following AWS services can be used for **SEED**:
 
 * RDS (PostgreSQL >=9.4)
 * ElastiCache (redis)
@@ -59,12 +65,12 @@ Clone the **SEED** repository from **github**
 
 enter the repo and install the python dependencies from `requirements`_
 
-.. _requirements: https://github.com/SEED-platform/seed/blob/master/requirements/local.txt
+.. _requirements: https://github.com/SEED-platform/seed/blob/master/requirements/aws.txt
 
 .. code-block:: console
 
     $ cd seed
-    $ sudo pip install -r requirements/local.txt
+    $ sudo pip install -r requirements/aws.txt
 
 
 JavaScript Dependencies
@@ -90,8 +96,8 @@ Database Configuration
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Copy the ``local_untracked.py.dist`` file in the ``config/settings`` directory to
-``config/settings/local_untracked.py``, and add a ``DATABASES`` configuration with your database username,
-password, host, and port. Your database configuration can point to an AWS RDS instance or a PostgreSQL 9.4 database
+``config/settings/local_untracked.py``, and update the ``DATABASES`` configuration with your database username,
+password, host, and port. Your database configuration can point to an AWS RDS instance or a local PostgreSQL 9.4 database
 instance you have manually installed within your infrastructure.
 
 .. code-block:: python
@@ -140,7 +146,6 @@ create a superuser to access the system
 .. code-block:: console
 
     $ python manage.py create_default_user --username=demo@example.com --organization=example --password=demo123
-
 
 .. note::
 
