@@ -256,6 +256,7 @@ angular.module('BE.seed.controller.inventory_list', [])
             // Rename nested keys
             var map = {};
             // list of fields that can be on both the PropertyState and TaxLotState
+            console.log($scope.columns)
             if ($scope.inventory_type === 'properties') {
               map = {
                 address_line_1: 'tax_address_line_1',

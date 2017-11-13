@@ -32,6 +32,14 @@ INVENTORY_MAP = {
     'taxlot': 'TaxLotState',
     'taxlotstate': 'TaxLotState',
 }
+
+INVENTORY_MAP_DISPLAY_NAME = {
+    'property': 'Property',
+    'propertystate': 'Property',
+    'taxlot': 'Tax Lot',
+    'taxlotstate': 'Tax Lot',
+}
+
 # This is the inverse mapping of the property and tax lots that are prepended to the fields
 # for the other table.
 INVENTORY_MAP_PREPEND = {
@@ -523,6 +531,7 @@ class Column(models.Model):
 
         # TODO: check to make sure that all the fields in the DB are in this list!
 
+
         return columns
 
     @staticmethod
@@ -636,6 +645,7 @@ class Column(models.Model):
         for edc in extra_data_columns:
             name = edc.column_name
             table = edc.table_name
+            display_name = titlecase(edc.column_name)
 
             # MAKE NOTE ABOUT HOW IMPORTANT THIS IN
             if name == 'id':
@@ -649,6 +659,7 @@ class Column(models.Model):
             # add _extra if the column is already in the list and it is not the one of
             while any(col['name'] == name and col['table'] != table for col in columns):
                 name += '_extra'
+                display_name += ' ({})'.format(INVENTORY_MAP_DISPLAY_NAME[inventory_type.lower()])
 
             # TODO: need to check if the column name is already in the list and if it is then
             # overwrite the data
@@ -657,9 +668,9 @@ class Column(models.Model):
                 {
                     'name': name,
                     'table': edc.table_name,
-                    'displayName': titlecase(edc.column_name),
+                    'displayName': display_name,
                     # 'dataType': 'string',  # TODO: how to check dataTypes on extra_data!
-                    'related': edc.table_name != INVENTORY_MAP[inventory_type.lower()],
+                    'related': edc.table_name != INVENTORY_MAP_DISPLAY_NAME[inventory_type.lower()],
                     'extraData': True
                 }
             )

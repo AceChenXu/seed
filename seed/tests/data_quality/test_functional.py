@@ -517,6 +517,14 @@ class DataQualitySample(TestCase):
                 "from_field": u'Monthly Data',
                 "to_table_name": u'PropertyState',
                 "to_field": u'Monthly Data'
+            }, {
+                "from_field": u'Duplicate Field 1',
+                "to_table_name": u'PropertyState',
+                "to_field": u'Duplicate Field'
+            }, {
+                "from_field": u'Duplicate Field 2',
+                "to_table_name": u'TaxLotState',
+                "to_field": u'Duplicate Field'
             }
         ]
 
