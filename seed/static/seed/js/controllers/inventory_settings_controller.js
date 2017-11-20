@@ -83,6 +83,7 @@ angular.module('BE.seed.controller.inventory_settings', [])
         enableFiltering: true,
         enableGridMenu: true,
         enableSorting: false,
+        flatEntityAccess: true,
         gridMenuCustomItems: [{
           title: 'Reset defaults',
           action: restoreDefaults

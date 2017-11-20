@@ -3075,3 +3075,13 @@ $pairedCellWidth: 60px;
   }
 
 }
+
+.merge-modal .modal-dialog {
+  max-height: 80vh;
+  width: 750px;
+  max-width: 85vw;
+}
+
+.merge-modal .merge-grid .ui-grid-menu-button {
+  height: 28px;
+}
